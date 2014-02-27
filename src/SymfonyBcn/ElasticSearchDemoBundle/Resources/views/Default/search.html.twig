@@ -1,0 +1,21 @@
+<html>
+<body>
+<h1>Search</h1>
+<form method="get" action="">
+    <select name="search_type">
+        <option{% if app.request.get('search_type') == 'movie' %} selected="selected"{% endif %} value="movie">Movie</option>
+        <option{% if app.request.get('search_type') == 'actor' %} selected="selected"{% endif %} value="actor">Actor / Actress</option>
+        <option{% if app.request.get('search_type') == 'director' %} selected="selected"{% endif %} value="director">Director</option>
+    </select>
+    <br>
+    <input type="text" name="query" value="{{ app.request.get('query') }}">
+    <br>
+    <input type="submit" value="Search!">
+</form>
+
+{% include 'ElasticSearchDemoBundle:Default:blocks/results.html.twig' with {
+results: results, results_title: app.request.get('analysis_type'), extended: app.request.get('extended')|default(false)
+}%}
+
+</body>
+</html>

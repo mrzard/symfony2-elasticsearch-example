@@ -20,7 +20,8 @@ framework:
     trusted_proxies: ~
     session:
         # handler_id set to null will use default session handler from php.ini
-        handler_id:  ~
+        storage_id: session.storage.php_bridge
+        handler_id: ~
     fragments:       ~
     http_method_override: true
 
@@ -67,3 +68,80 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+
+
+fos_elastica:
+    clients:
+        default: { host: localhost, port: 9200 }
+    indexes:
+        symfony_bcn_example:
+            client: default
+            types:
+                movie:
+                    mappings:
+                        id: {type: "integer"}
+                        overview: {type: "string", boost: 1}
+                        name: {type: "string", boost: 1}
+                        releaseDate: {type: "date"}
+                        actors:
+                            type: object
+                            properties:
+                                id: {type: "integer"}
+                                name: {type: "string", analyzer: "keyword"}
+                        directors:
+                            type: object
+                            properties:
+                                id: {type: "integer"}
+                                name: {type: "string", analyzer: "keyword"}
+                        genres:
+                            type: object
+                            properties:
+                                id: {type: "integer"}
+                                name: {type: "string", analyzer: "keyword"}
+                    persistence:
+                        driver: orm
+                        model: SymfonyBcn\ElasticSearchDemoBundle\Entity\Movie
+                        provider: ~
+                actor:
+                    mappings:
+                        id: {type: "integer"}
+                        name: {type: "string", boost: 1}
+                        movies:
+                            type: object
+                            properties:
+                                id: {type: "integer"}
+                                name: {type: "string", analyzer: "keyword"}
+                                releaseDate: {type: "date"}
+                    persistence:
+                          driver: orm
+                          model: SymfonyBcn\ElasticSearchDemoBundle\Entity\Actor
+                          provider: ~
+                director:
+                    mappings:
+                        id: {type: "integer"}
+                        name: {type: "string", boost: 1}
+                        movies:
+                            type: object
+                            properties:
+                                id: {type: "integer"}
+                                name: {type: "string", analyzer: "keyword"}
+                                releaseDate: {type: "date"}
+                    persistence:
+                          driver: orm
+                          model: SymfonyBcn\ElasticSearchDemoBundle\Entity\Director
+                          provider: ~
+                genre:
+                    mappings:
+                        id: {type: "integer"}
+                        name: {type: "string", boost: 1}
+                        movies:
+                            type: object
+                            properties:
+                                id: {type: "integer"}
+                                name: {type: "string", analyzer: "keyword"}
+                                releaseDate: {type: "date"}
+                    persistence:
+                          driver: orm
+                          model: SymfonyBcn\ElasticSearchDemoBundle\Entity\Genre
+                          provider: ~

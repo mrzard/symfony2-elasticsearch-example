@@ -1,0 +1,2 @@
+_elasticsearch_test:
+    resource: "@ElasticSearchDemoBundle/Resources/config/routing.yml"

@@ -631,12 +631,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSElasticaBundle.git",
-                "reference": "c8c72f5f0bf8566b8ecf9b4ebddbb3db2cb23a0a"
+                "reference": "245732781be06ada25ae5dc4464521021b85a0b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSElasticaBundle/zipball/c8c72f5f0bf8566b8ecf9b4ebddbb3db2cb23a0a",
-                "reference": "c8c72f5f0bf8566b8ecf9b4ebddbb3db2cb23a0a",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSElasticaBundle/zipball/245732781be06ada25ae5dc4464521021b85a0b9",
+                "reference": "245732781be06ada25ae5dc4464521021b85a0b9",
                 "shasum": ""
             },
             "require": {
@@ -705,7 +705,7 @@
                 "propel",
                 "search"
             ],
-            "time": "2014-02-20 22:23:45"
+            "time": "2014-03-04 22:12:44"
         },
         {
             "name": "incenteev/composer-parameter-handler",
