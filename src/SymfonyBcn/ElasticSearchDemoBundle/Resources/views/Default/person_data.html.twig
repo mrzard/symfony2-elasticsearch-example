@@ -1,0 +1,24 @@
+<html>
+<body>
+<h1>{{ person.name }} (ID: {{ person.id }})</h1>
+<h3>Movies by {{ person.name }}</h3>
+<ul>
+{% for movie in movies %}
+    <li>{{ movie.name }} - {{ movie.releaseDate|date('d/m/Y') }}.<br>
+        Genre(s):
+        <ul>
+        {% for genre in movie.genres %}
+        <li>{{ genre.name }}</li>
+        {% endfor %}
+        </ul>
+    </li>
+{% endfor %}
+</ul>
+<h4>By Genre</h4>
+<ul>
+    {% for genre in genres %}
+    <li>{{ genre.term}} ({{ genre.count }})</li>
+    {% endfor %}
+</ul>
+</body>
+</html>

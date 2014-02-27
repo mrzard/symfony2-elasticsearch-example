@@ -1,0 +1,35 @@
+{% if not results|length and app.request.get('query') %}
+    <h2>No results found ({{ results_title }})</h2>
+{% endif %}
+{% if results|length and app.request.get('query') %}
+    <h2>Results - {{ results_title }}</h2>
+    <ul>
+    {% for result in results %}
+        <li>
+        {{ result.name }} {% if result.releaseDate is defined %}({{ result.releaseDate|date('Y') }}){% endif %}
+        <a href="{{ path(app.request.get('search_type')|default('movie') ~ '_details', {id: result.id}) }}">See details</a>
+        {% if result.overview is defined %}
+            <br>{{ result.overview }}
+        {% endif %}
+        {% if result.directors is defined and extended %}
+            <br>
+            Director(s):
+            <ul>
+                {% for director in result.directors %}
+                    <li>{{ director.name }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if result.actors is defined and extended %}
+            <br>
+            Cast:
+            <ul>
+            {% for person in result.actors %}
+                <li>{{ person.name }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+{% endif %}

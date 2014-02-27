@@ -1,0 +1,9 @@
+services:
+  symfonybcn.command.populate_database:
+      class: %symfonybcn.command.populate_database.class%
+      arguments:
+          entity_manager: @doctrine.orm.entity_manager
+          imdb_ids: %imdb.ids%
+          tmdb_api_key: %tmbd.api_key%
+      tags:
+          -  { name: console.command }

@@ -1,0 +1,15 @@
+<html>
+<body>
+<h1>Search</h1>
+<form method="get" action="">
+    <input type="text" name="query" value="{{ app.request.get('query') }}">
+    <br>
+    <input type="submit" value="Search!">
+</form>
+
+{% include 'ElasticSearchDemoBundle:Default:blocks/results.html.twig' with {
+results: results, results_title: app.request.get('analysis_type'), extended: app.request.get('extended')|default(false)
+}%}
+
+</body>
+</html>

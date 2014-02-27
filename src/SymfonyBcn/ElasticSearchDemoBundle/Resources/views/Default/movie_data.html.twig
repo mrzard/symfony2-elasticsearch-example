@@ -1,0 +1,30 @@
+<html>
+<body>
+<h1>{{ movie.name }} (ID: {{ movie.id }}) - {{ movie.releaseDate|date('d/m/Y') }}</h1>
+<p>{{ movie.overview }}</p>
+{% if directors is defined and directors %}
+<h4>Director(s)</h4>
+<ul>
+    {% for director in directors %}
+        <li>{{ director.name }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% if cast is defined and cast %}
+<h4>Cast</h4>
+<ul>
+    {% for person in cast %}
+        <li>{{ person.name }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% if genres is defined and genres %}
+<h4>Genres</h4>
+<ul>
+    {% for genre in genres %}
+        <li>{{ genre.term}} ({{ genre.count }})</li>
+    {% endfor %}
+</ul>
+{% endif %}
+</body>
+</html>
